@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <div class="delete_record">
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" value="Save">
+                {% trans 'Окончательно удалить запись №' %} {{ object.pk }}
+            </button>
+        </form>
+    </div>
+{% endblock %}

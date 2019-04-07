@@ -1,0 +1,15 @@
+{% load i18n %}
+
+<ul>
+    {% for record in object_list %}
+        <li>
+            <a href="{% url 'record_detail' pk=record.pk %}">
+                {{ record.date_created|date }} - {{ record.title }} ( {% trans 'Автор' %}: {{ record.author }}, {% trans 'Теги' %}: {{ record.tags.all|join:" " }})
+            </a>
+        </li>
+    {% empty %}
+        <li>
+            {% trans 'Нет записей' %}
+        </li>
+    {% endfor %}
+</ul>

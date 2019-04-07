@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <div class="create_record">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" value="Save">
+                {% trans 'Создать запись' %}
+            </button>
+        </form>
+    </div>
+{% endblock %}

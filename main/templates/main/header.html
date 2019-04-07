@@ -1,0 +1,29 @@
+{% load i18n %}
+
+<header>
+    <span class="menu">
+        <a href="{% url 'home' %}">
+            {% trans 'Главная' %}
+        </a>
+    </span>
+
+    {% if request.user.is_anonymous %}
+        <span class="menu">
+            <a href="{% url 'login' %}">
+                {% trans 'Войти' %}
+            </a>
+        </span>
+    {% else %}
+        <span class="menu">
+            <a href="{% url 'record_create' %}">
+                {% trans 'Создать запись' %}
+            </a>
+        </span>
+
+        <span class="menu">
+            <a href="{% url 'logout' %}">
+                {{ request.user.username }} - {% trans 'Выйти' %}
+            </a>
+        </span>
+    {% endif %}
+</header>

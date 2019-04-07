@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <div class="search_results">
+        <div class="title">
+            {% trans 'Результаты поиска по' %} {{ search_by }}:
+        </div>
+        <div class="results">
+            {% if results %}
+                {% include 'main/records.html' with object_list=results %}
+            {% else %}
+                {% trans 'Поиск не дал результатов' %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

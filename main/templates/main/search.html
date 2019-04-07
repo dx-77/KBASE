@@ -1,0 +1,10 @@
+{% load i18n %}
+
+<div class="search">
+    <form method="GET" action="{% url 'search' %}">
+        <input type="text" name="query">
+        <button type="submit">
+            {% trans 'Поиск по записям' %}
+        </button>
+    </form>
+</div>

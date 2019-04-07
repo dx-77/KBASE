@@ -1,0 +1,49 @@
+{% extends 'main/base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+    {% if form.errors %}
+    <p>
+        {% trans 'Имя пользователя и/или пароль не верны! Попробуйте еще раз' %}
+    </p>
+    {% endif %}
+
+    {% if next %}
+        {% if user.is_authenticated %}
+        <p>
+            {% trans 'Для просмотра этой страницы необходима авторизация под аккаунтом с соответствующими правами' %}
+        </p>
+        {% else %}
+        <p>
+            {% trans 'Для просмотра этой страницы необходима авторизация.' %}
+        </p>
+        {% endif %}
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <table>
+    <tr>
+        <td>{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+    </tr>
+    <tr>
+        <td>{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+    </tr>
+    </table>
+
+    <button type="submit" value="login">
+        {% trans 'Войти' %}
+    </button>
+    <input type="hidden" name="next" value="{{ next }}">
+    </form>
+
+    <p>
+        <a href="{% url 'password_reset' %}">
+            {% trans 'Забыли пароль?' %}
+        </a>
+    </p>
+
+{% endblock %}

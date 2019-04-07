@@ -1,0 +1,43 @@
+{% extends 'main/base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <h1>
+        {{ object.title }}
+    </h1>
+    <p>
+        {{ object.content|safe }}
+    </p>
+    <p>
+        {% trans 'Автор' %}: {{ object.author }}
+    </p>
+    <p>
+        {% trans 'Дата создания' %}: {{ object.date_created }}
+    </p>
+    <p>
+        {% trans 'Дата изменения' %}: {{ object.date_modified }}
+    </p>
+    <p>
+        {% trans 'Кем изменено' %}: {{ object.modified_by }}
+    </p>
+    <p>
+        {% trans 'Теги' %}:
+        {% for tag in object.tags.all %}
+            <span class="tag">
+                <a href="{% url 'search' %}?tag={{ tag.pk }}">
+                    {{ tag }}
+                </a>
+            </span>
+        {% endfor %}
+    </p>
+    <p>
+        <a href="{% url 'record_update' pk=object.pk %}">
+            {% trans 'Изменить запись' %}
+        </a>
+    </p>
+    <p>
+        <a href="{% url 'record_delete' pk=object.pk %}">
+            {% trans 'Удалить запись' %}
+        </a>
+    </p>
+{% endblock %}
