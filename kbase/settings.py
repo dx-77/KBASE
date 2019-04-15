@@ -133,3 +133,5 @@ TINYMCE_DEFAULT_CONFIG = {
     'relative_urls': False,
     'cleanup_on_startup': True,
 }
+
+DEFAULT_RECORD_EMAIL = 'record@example.com'

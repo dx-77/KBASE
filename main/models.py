@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils import timezone
@@ -6,6 +7,8 @@ from django.utils.html import strip_tags
 from django.utils.translation import gettext_lazy as _
 
 from tinymce.models import HTMLField
+
+from main.validators import validate_no_plus_in_email
 
 
 class User(AbstractUser):
@@ -55,6 +58,13 @@ class Record(models.Model):
     date_created = models.DateTimeField(default=timezone.now, verbose_name=_('Дата создания'))
 
     date_modified = models.DateTimeField(default=timezone.now, verbose_name=_('Дата изменения'))
+
+    email = models.EmailField(
+        default=settings.DEFAULT_RECORD_EMAIL,
+        blank=True,
+        verbose_name=_('Дата изменения'),
+        validators=[validate_no_plus_in_email]
+    )
 
     tags = models.ManyToManyField(
         Tag,

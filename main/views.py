@@ -44,7 +44,7 @@ class SearchView(TemplateView):
 class RecordCreateView(CreateView):
     template_name_suffix = '_create_form'
     model = Record
-    fields = ['title', 'content', 'tags']
+    fields = ['title', 'content', 'tags', 'email']
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
@@ -57,7 +57,7 @@ class RecordCreateView(CreateView):
 class RecordUpdateView(UpdateView):
     template_name_suffix = '_update_form'
     model = Record
-    fields = ['title', 'content', 'tags']
+    fields = ['title', 'content', 'tags', 'email']
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
